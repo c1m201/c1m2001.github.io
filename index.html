@@ -67,63 +67,19 @@
 
   <script>
     function closeWindow() {
+      // 隐藏弹窗
       document.getElementById('myPopup').style.display = 'none';
-      window.location.href = 'about:blank';
-      setTimeout(() => {
-        try {
-          window.close();
-        } catch (e) {
-          alert('自动关闭失败，请手动关闭窗口');
-        }
-      }, 100);
-    }
-  </script>
-</body>
-</html>
-      font-size: 36px;
-      margin-bottom: 40px;
-      font-weight: bold;
-    }
-    button {
-      /* 固定宽度和统一内边距 */
-      width: 180px;
-      padding: 15px 20px;
       
-      margin: 0 15px;
-      cursor: pointer;
-      font-size: 22px;
-      font-weight: bold;
-      background: #fff;
-      color: #000;
-      border: none;
-      border-radius: 6px;
-      display: inline-flex;
-      justify-content: center;
-    }
-    button:hover {
-      background: #eee;
-    }
-  </style>
-</head>
-<body>
-  <div class="popup" id="myPopup">
-    <div class="popup-content">
-      <p>鸣潮牛逼！</p>
-      <div>
-        <button onclick="closeWindow()">我也觉得</button>
-        <button onclick="closeWindow()">同意</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function closeWindow() {
-      document.getElementById('myPopup').style.display = 'none';
-      window.close();
-    }
-  </script>
-</body>
-</html>
+      // 尝试关闭窗口（兼容部分浏览器）
+      try {
+        // 打开新窗口再关闭，绕开部分限制
+        const tempWin = window.open('about:blank', '_temp');
+        window.close();
+        tempWin.close();
+      } catch (e) {
+        // 关闭失败时提示手动操作
+        alert('请点击浏览器右上角的"×"关闭窗口~');
+      }
     }
   </script>
 </body>
